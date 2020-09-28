@@ -9,6 +9,9 @@
     class db{
         private $file;
         public function __construct($file){
+             /**
+             * @param string $file
+             */
             $pattern = "/.+\.json/";
             if(!preg_match($pattern, $file))
                 throw new jsondbException("Only json files can be used.");
@@ -148,7 +151,7 @@
              * @return bool
              */
             if(!file_put_contents($this->file, json_encode(array("available" => true))))
-                throw new jsondbException("Could not delete contents of {$this->file} file.");
+                throw new jsondbException("Could not delete content of {$this->file} file.");
             return true;
         }
         public function order(){
