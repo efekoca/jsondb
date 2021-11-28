@@ -9,9 +9,6 @@
     class db{
         private $file;
         public function __construct($file){
-             /**
-             * @param string $file
-             */
             $pattern = "/.+\.json/";
             if(!preg_match($pattern, $file))
                 throw new jsondbException("Only json files can be used.");
@@ -70,8 +67,9 @@
                     if(($multiple === false) and (!is_array($val)))
                         $decoded[$par] = $val;
                     else{
+                        $decoded[$par] = array();
                         foreach($val as $key => $value){
-                            $decoded[$key] = $value;
+                            $decoded[$par][$key] = $value;
                         }
                     }
                     $encoded = json_encode($decoded);
@@ -151,7 +149,7 @@
              * @return bool
              */
             if(!file_put_contents($this->file, json_encode(array("available" => true))))
-                throw new jsondbException("Could not delete content of {$this->file} file.");
+                throw new jsondbException("Could not delete contents of {$this->file} file.");
             return true;
         }
         public function order(){
