@@ -1,6 +1,9 @@
 <?php
     namespace jsonDB;
-
+    if((basename($_SERVER["PHP_SELF"]) == basename(__FILE__)) or (basename($_SERVER["PHP_SELF"]) == substr(basename(__FILE__), 0, (strlen(basename(__FILE__)) - 4)))){
+        header("Location: ./");
+        die();
+    }
     class jsondbException extends \Exception{
         public function errorMsg(){
             return "An unexpected error has occurred: " . $this->getMessage();
