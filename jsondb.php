@@ -67,7 +67,9 @@
                     if(($multiple === false) and (!is_array($val)))
                         $decoded[$par] = $val;
                     else{
-                        $decoded[$par] = array();
+                        if(!array_key_exists($par, $decoded)){
+                            $decoded[$par] = array();
+                        }
                         foreach($val as $key => $value){
                             $decoded[$par][$key] = $value;
                         }
